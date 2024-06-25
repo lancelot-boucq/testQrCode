@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre un selfie</title>
+</head>
+<body>
+    <h1>Prendre un selfie</h1>
+    <p>Nous avons besoin de votre permission pour accéder à votre appareil photo.</p>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    
+    <script>
+        // Accéder à l'élément vidéo et canvas
+        var video = document.getElementById('video');
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        
+        // Demander l'autorisation d'accéder à l'appareil photo
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+                
+                // Attendre que la vidéo soit prête
+                video.onloadedmetadata = function() {
+                    // Prendre une photo après une petite pause pour s'assurer que la vidéo est prête
+                    setTimeout(function() {
+                        context.drawImage(video, 0, 0, 640, 480);
+                        var imageData = canvas.toDataURL('image/png');
+                        console.log(imageData); // Afficher l'image dans la console (à remplacer par une autre action si nécessaire)
+                    }, 1000); // Prendre la photo après 1 seconde
+                };
+            })
+            .catch(function(err) {
+                console.log("Une erreur est survenue : " + err);
+            });
+    </script>
+</body>
+</html>
