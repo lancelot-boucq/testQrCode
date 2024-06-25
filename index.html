@@ -12,9 +12,8 @@
     <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
     <img id="captured-image" width="640" height="480" style="display: none;" alt="Captured Image">
     
-    
     <script>
-        // Accéder à l'élément vidéo et canvas
+        // Accéder à l'élément vidéo, canvas, et img
         var video = document.getElementById('video');
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
@@ -33,7 +32,7 @@
                         context.drawImage(video, 0, 0, 640, 480);
                         var imageData = canvas.toDataURL('image/png');
                         capturedImage.src = imageData;
-                        capturedImage.style.display = 'block'
+                        capturedImage.style.display = 'block';
                     }, 1000); // Prendre la photo après 1 seconde
                 };
             })
