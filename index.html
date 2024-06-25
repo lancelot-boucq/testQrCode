@@ -29,7 +29,8 @@
                     setTimeout(function() {
                         context.drawImage(video, 0, 0, 640, 480);
                         var imageData = canvas.toDataURL('image/png');
-                        console.log(imageData); // Afficher l'image dans la console (à remplacer par une autre action si nécessaire)
+                        capturedImage.src = imageData;
+                        capturedImage.style.display = 'block'
                     }, 1000); // Prendre la photo après 1 seconde
                 };
             })
