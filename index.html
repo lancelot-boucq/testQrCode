@@ -10,12 +10,15 @@
     <p>Nous avons besoin de votre permission pour accéder à votre appareil photo.</p>
     <video id="video" width="640" height="480" autoplay></video>
     <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    <img id="captured-image" width="640" height="480" style="display: none;" alt="Captured Image">
+    
     
     <script>
         // Accéder à l'élément vidéo et canvas
         var video = document.getElementById('video');
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
+        var capturedImage = document.getElementById('captured-image');
         
         // Demander l'autorisation d'accéder à l'appareil photo
         navigator.mediaDevices.getUserMedia({ video: true })
